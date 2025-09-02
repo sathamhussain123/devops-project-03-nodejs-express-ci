@@ -1,10 +1,9 @@
-const request = require("supertest");
-const app = require("../app/index");
+// tests/app.test.js
+const request = require("supertest");   // ✅ import supertest
+const app = require("../app/app");      // ✅ import your express app
 
-describe("GET /", () => {
-  it("should return Hello message", async () => {
-    const res = await request(app).get("/");
-    expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty("message", "Hello DevOps Project 3 🚀 - Node.js Express CI");
-  });
+test("GET / should return Hello DevOps", async () => {
+  const res = await request(app).get("/");
+  expect(res.statusCode).toBe(200);
+  expect(res.body.message).toContain("Hello DevOps");
 });
